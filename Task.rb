@@ -34,8 +34,6 @@ class Task
 	
 	# Make system call to start this Task
 	def start()
-		cmd = "START \"#{@name}\" \"#{path + exe}\" #{argsToString}"
-		system(cmd)
-		puts "Started:\t#{@name}"
+		system("START \"#{@name}\" \"#{path + exe}\" #{argsToString}")
 	end
 end

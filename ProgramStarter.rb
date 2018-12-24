@@ -17,15 +17,18 @@ def getOpenPrograms()
 	return programs
 end
 
-file = File.new($TASK_FILE)
-JSON.parse(file.read).each do |task|
+JSON.parse(File.new($TASK_FILE).read).each do |task|
 	$PROGRAM_LIST.push(Task.fromJSON(task))
 end
 
+openPrograms = getOpenPrograms()
+
 # Open each program in array
 $PROGRAM_LIST.each do |program|
-	program.start()
+	if !openPrograms.include?(program.exe.downcase()) then
+		program.start()
+		puts "Started: #{program.name}"
+	else
+		puts "Skipped #{program.name}, already running"
+	end
 end
-
-# Print set of running programs
-puts "Running Programs: \n #{getOpenPrograms()}"
