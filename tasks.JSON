@@ -1,16 +1,20 @@
-[
-	  {
-		"name": "Git Bash",
-		"path": "C:\\Program Files\\Git\\",
-		"exe": "git-bash.exe",
-		"args": [
-			"--cd-to-home"
-		]
-	  },
-	  {
-		"name": "Notepad",
-		"path": "",
-		"exe": "notepad.exe",
-		"args": []
-	  }
-]
+{
+  "Tasks": [
+    {
+      "name": "Git Bash",
+      "path": "C:\\Program Files\\Git\\",
+      "exe": "git-bash.exe",
+      "args": [
+        "--cd-to-home"
+      ]
+    },
+    {
+      "name": "Notepad",
+      "path": "",
+      "exe": "notepad.exe",
+      "args": [
+
+      ]
+    }
+  ]
+}
