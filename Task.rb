@@ -33,4 +33,13 @@ class Task
 	def start()
 		system("START \"#{@name}\" \"#{path + exe}\" #{argsToString}")
 	end
+	
+	def toHash()
+		retVal = Hash.new()
+			retVal["name"] = @name
+			retVal["path"] = @path
+			retVal["exe"] = @exe
+			retVal["args"] = @args
+		return retVal
+	end
 end
