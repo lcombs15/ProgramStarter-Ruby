@@ -3,10 +3,7 @@
 require 'json'
 
 class Task
-	attr_accessor :name
-	attr_accessor :path
-	attr_accessor :exe
-	attr_accessor :args
+	attr_accessor :name, :path, :exe, :args
 	
 	# Constructor
 	def initialize(name, path, exe, args)
