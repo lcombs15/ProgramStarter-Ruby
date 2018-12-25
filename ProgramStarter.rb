@@ -3,6 +3,7 @@
 require 'set'
 require_relative 'Task'
 require 'fileutils'
+require_relative 'JSON_Manager'
 
 $PROGRAM_LIST = []
 $TASK_FILE = "tasks.JSON"
@@ -17,7 +18,7 @@ def getOpenPrograms()
 	return programs
 end
 
-JSON.parse(File.new($TASK_FILE).read).each do |task|
+JSON.parse(File.new($TASK_FILE).read)["Tasks"].each do |task|
 	$PROGRAM_LIST.push(Task.fromJSON(task))
 end
 
@@ -32,3 +33,13 @@ $PROGRAM_LIST.each do |program|
 		puts "Skipped #{program.name}, already running"
 	end
 end
+
+tasks = []
+
+$PROGRAM_LIST.each do |task|
+	tasks.push(task.toHash())
+end
+
+output = Hash.new()
+output["Tasks"] = tasks
+writeJSONFile("out.JSON", output)
