@@ -48,4 +48,7 @@ end
 
 sleep_time = 5
 puts "Complete. Halting for #{sleep_time} second(s)..."
+
+# Ensure console gets updated before sleep
+STDOUT.flush
 sleep(sleep_time)
