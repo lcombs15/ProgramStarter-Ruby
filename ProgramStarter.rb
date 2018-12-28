@@ -2,9 +2,8 @@
 
 require 'set'
 require_relative 'Task'
+require_relative 'JSON_Manager'
 require 'fileutils'
-
-$TASK_FILE = "tasks.JSON"
 
 # Make system call to generate set of open programs
 def getOpenPrograms()
@@ -17,15 +16,6 @@ def getOpenPrograms()
 	return programs
 end
 
-# Read tasks from JSON file
-def getTasksFromJSON()
-	retVal = []
-	JSON.parse(File.new($TASK_FILE).read)["Tasks"].each do |task|
-		retVal.push(Task.fromJSON(task))
-	end
-	return retVal
-end
-
 # Output heading
 puts "Task\t\tStatus"
 puts "-" * 50
@@ -33,7 +23,7 @@ puts "-" * 50
 openPrograms = getOpenPrograms()
 
 # Open each program in array
-getTasksFromJSON().each do |program|
+getTasksFromJSON($TASK_FILE).each do |program|
 	print "#{program.name}:\t"
 	if !openPrograms.include?(program.exe.downcase()) then
 		program.start()
